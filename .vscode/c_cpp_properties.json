@@ -1,0 +1,21 @@
+{
+  "version": 4,
+  "configurations": [
+    {
+      "name": "QFengine",
+      "cppStandard": "c++17",
+      "cStandard": "c99",
+      "defines": [
+        "_CRT_SECURE_NO_WARNINGS",
+        "_USE_MATH_DEFINES",
+        "NOMINMAX"
+      ],
+      "includePath": [
+        "${workspaceFolder}/deps/include",
+        "${workspaceFolder}/src/game",
+        "${workspaceFolder}/src",
+        "${default}"
+      ]
+    }
+  ]
+}

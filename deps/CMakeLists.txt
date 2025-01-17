@@ -35,5 +35,10 @@ function(import_static_library library)
     set_target_properties(${library} PROPERTIES IMPORTED_LOCATION "${DEPS_LIBRARY_DIR}/${CMAKE_STATIC_LIBRARY_PREFIX}${library}${CMAKE_STATIC_LIBRARY_SUFFIX}")
 endfunction()
 
+import_shared_library(SDL3)
+
+add_subdirectory(src/physfs)
+add_subdirectory(src/stb)
+
 set(DEPS_INCLUDE_DIR "${DEPS_INCLUDE_DIR}" PARENT_SCOPE)
 set(DEPS_LIBRARY_DIR "${DEPS_LIBRARY_DIR}" PARENT_SCOPE)

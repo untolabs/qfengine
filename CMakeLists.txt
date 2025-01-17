@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
-project(QFengine LANGUAGES C CXX VERSIO 0.0.1)
+project(QFengine LANGUAGES C CXX VERSION 0.0.1)
 
 ## Declare feature options present in cmake/feature.hh
 option(ENABLE_VULKAN "Enable Vulkan renderer support" OFF)
@@ -21,10 +21,6 @@ set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 ## Output binaries into build root
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
-
-## Figure out compile-time configuration
-configure_file("${CMAKE_CURRENT_LIST_DIR}/cmake/feature.hh.in" "${CMAKE_CURRENT_LIST_DIR}/cmake/feature.hh")
-configure_file("${CMAKE_CURRENT_LIST_DIR}/cmake/version.hh.in" "${CMAKE_CURRENT_LIST_DIR}/cmake/version.hh")
 
 add_subdirectory(data)
 add_subdirectory(deps)

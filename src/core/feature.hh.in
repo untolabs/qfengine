@@ -1,0 +1,7 @@
+#ifndef CORE_FEATURE_HH
+#define CORE_FEATURE_HH 1
+#pragma once
+
+#cmakedefine01 ENABLE_VULKAN
+
+#endif /* CORE_FEATURE_HH */
