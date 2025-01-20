@@ -22,9 +22,10 @@ void insert(const char *option, const char *argument = nullptr);
 /**
  * Returns an option's argument
  * @param option Command line option
- * @returns Option's argument or NULL if there is none
+ * @param fallback Fallback value just in case
+ * @returns Option's argument or `fallback` if there is none
  */
-const char *get(const char *option);
+const char *get(const char *option, const char *fallback = nullptr);
 
 /**
  * Checks if the registry has an option

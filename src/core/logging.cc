@@ -1,6 +1,8 @@
 #include "core/precompiled.hh"
 #include "core/logging.hh"
 
+#include "core/cmdline.hh"
+
 static QF_LogFunction log_callback = nullptr;
 static QF_LogLevel log_level = DEFAULT_LOG_LEVEL;
 static std::mutex log_mutex;
@@ -29,6 +31,19 @@ void logging::set_level(QF_LogLevel level)
     log_mutex.lock();
     log_level = level;
     log_mutex.unlock();
+}
+
+void logging::init_from_cmdline(void)
+{
+    if(cmdline::contains("quiet")) {
+        logging::set_level(QF_SILENT);
+        return;
+    }
+
+    if(cmdline::contains("verbose") || cmdline::contains("debug")) {
+        logging::set_level(QF_VERBOSE);
+        return;
+    }
 }
 
 void logging::printf(QF_LogLevel level, const char *format, ...)

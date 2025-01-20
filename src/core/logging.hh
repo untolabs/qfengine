@@ -53,6 +53,12 @@ void set_callback(QF_LogFunction callback);
  * @param level Log level
  */
 void set_level(QF_LogLevel level);
+
+/**
+ * Sets up the logger with a level that may
+ * have been passed into the command line;
+ */
+void init_from_cmdline(void);
 } // namespace logging
 
 namespace logging

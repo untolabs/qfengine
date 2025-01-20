@@ -27,6 +27,6 @@ add_subdirectory(deps)
 add_subdirectory(src)
 
 ## Copy information and compliance files into the package
-install(FILES "${CMAKE_CURRENT_LIST_DIR}/LICENSE.txt" DESTINATION ".")
-install(FILES "${CMAKE_CURRENT_LIST_DIR}/README_DEPS.txt" DESTINATION ".")
 install(FILES "${CMAKE_CURRENT_LIST_DIR}/README.txt" DESTINATION ".")
+install(FILES "${CMAKE_CURRENT_LIST_DIR}/LICENSE.txt" DESTINATION ".")
+install(FILES "${CMAKE_CURRENT_LIST_DIR}/thirdpartylegalnotices.txt" DESTINATION ".")

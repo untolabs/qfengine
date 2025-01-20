@@ -65,11 +65,11 @@ void cmdline::insert(const char *option, const char *argument)
     else options.insert_or_assign(option, argument);
 }
 
-const char *cmdline::get(const char *option)
+const char *cmdline::get(const char *option, const char *fallback)
 {
     auto it = options.find(option);
     if(it == options.cend())
-        return nullptr;
+        return fallback;
     return it->second.c_str();
 }
 

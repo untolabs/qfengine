@@ -17,7 +17,13 @@
 #include <unordered_map>
 #include <vector>
 
+#include <entt/entity/registry.hpp>
+#include <entt/signal/dispatcher.hpp>
+
+#include <glad/gl.h>
+
 #include <SDL3/SDL.h>
+#include <SDL3/SDL_opengl.h>
 
 #include <stb_image.h>
 #include <stb_image_resize2.h>
