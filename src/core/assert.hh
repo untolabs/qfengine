@@ -8,7 +8,7 @@
  * Triggers a crash if `condition` resolves to `false`
  * @param condition The condition to check for
  */
-#define QF_assert(condition) if(!(condition)) QF_throw("Assertion failed:\n%s", #condition); else static_cast<void>(0)
+#define QF_assert(condition) if(!(condition)) QF_throw("Assertion failed: %s", #condition); else static_cast<void>(0)
 
 /**
  * Triggers a crash if `condition` resolves to `false`

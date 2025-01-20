@@ -2,16 +2,20 @@
 #define CLIENT_PRECOMPILED_HH 1
 #pragma once
 
+#include <cinttypes>
 #include <cmath>
 #include <cstdarg>
 #include <cstddef>
 #include <cstdint>
 
+#include <chrono>
 #include <iostream>
 #include <limits>
 #include <mutex>
 #include <thread>
 #include <type_traits>
+#include <unordered_map>
+#include <vector>
 
 #include <SDL3/SDL.h>
 
