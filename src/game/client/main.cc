@@ -7,9 +7,10 @@
 #include "core/epoch.hh"
 #include "core/logging.hh"
 
+#include "client/display.hh"
 #include "client/game.hh"
 #include "client/globals.hh"
-#include "client/refresher.hh"
+#include "client/render_api.hh"
 
 static bool poll_events(void)
 {
@@ -17,11 +18,37 @@ static bool poll_events(void)
 
     while(SDL_PollEvent(&event)) {
         if(event.type == SDL_EVENT_QUIT) {
-            // We want to bail, just return false
+            // The user requested the application
+            // to terminate; returning false terminates
+            // the main loop in wrapped_main function
             return false;
         }
 
+        if(event.type == SDL_EVENT_KEY_DOWN && event.key.key == SDLK_ESCAPE) {
+            QF_emerg("client: SDLK_ESCAPE has been pressed");
+            QF_throw("client: SDLK_ESCAPE throw hack");
+        }
 
+        switch(event.type) {
+        case SDL_EVENT_KEY_DOWN:
+            globals::dispatcher.trigger(event.key);
+            break;
+        case SDL_EVENT_KEY_UP:
+            globals::dispatcher.trigger(event.key);
+            break;
+        case SDL_EVENT_MOUSE_MOTION:
+            globals::dispatcher.trigger(event.motion);
+            break;
+        case SDL_EVENT_MOUSE_BUTTON_DOWN:
+            globals::dispatcher.trigger(event.button);
+            break;
+        case SDL_EVENT_MOUSE_BUTTON_UP:
+            globals::dispatcher.trigger(event.button);
+            break;
+        case SDL_EVENT_MOUSE_WHEEL:
+            globals::dispatcher.trigger(event.wheel);
+            break;
+        }
     }
 
     return true;
@@ -33,7 +60,9 @@ static void wrapped_main(int argc, char **argv)
 
     logging::init_from_cmdline();
 
-    refresher::init();
+    display::init();
+
+    render_api::init();
 
     client_game::init();
 
@@ -49,7 +78,9 @@ static void wrapped_main(int argc, char **argv)
 
     globals::curtime = epoch::microseconds();
 
-    refresher::init_late();
+    display::init_late();
+
+    render_api::init_late();
 
     client_game::init_late();
 
@@ -71,16 +102,16 @@ static void wrapped_main(int argc, char **argv)
 
         client_game::window_update();
 
-        refresher::fn_ref_prepare();
+        render_api::video_prepare();
 
         client_game::window_update_late();
 
-        refresher::fn_ref_present();
+        render_api::video_present();
     }
 
     client_game::deinit();
 
-    refresher::deinit();
+    render_api::deinit();
 }
 
 int main(int argc, char **argv)

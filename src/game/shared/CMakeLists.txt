@@ -1,4 +1,5 @@
 add_library(qf_shared STATIC
+    "${CMAKE_CURRENT_LIST_DIR}/const.hh"
     "${CMAKE_CURRENT_LIST_DIR}/globals.cc"
     "${CMAKE_CURRENT_LIST_DIR}/globals.hh"
     "${CMAKE_CURRENT_LIST_DIR}/precompiled.hh")
