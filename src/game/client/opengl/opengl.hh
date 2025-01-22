@@ -13,7 +13,7 @@ void init_late(void);
 
 namespace opengl
 {
-void video_init(const char *title);
+void video_init(void);
 void video_deinit(void);
 void video_prepare(void);
 void video_present(void);

@@ -11,7 +11,7 @@ enum RenderAPI {
 class DynamicLevelData;
 class StaticLevelData;
 
-using PFN_render_video_init = void(*)(const char *title);
+using PFN_render_video_init = void(*)(void);
 using PFN_render_video_deinit = void(*)(void);
 using PFN_render_video_prepare = void(*)(void);
 using PFN_render_video_present = void(*)(void);

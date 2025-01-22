@@ -132,7 +132,7 @@ void render_api::reset(RenderAPI api)
 
     QF_assert_msg(render_api_complete, "Renderer implementation is incomplete");
 
-    render_api::video_init(CLIENT_TITLE);
+    render_api::video_init();
 
     QF_assert_msg(globals::window, "Renderer failed to open a window");
 

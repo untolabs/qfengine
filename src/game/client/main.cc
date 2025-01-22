@@ -2,10 +2,14 @@
 
 #include "core/assert.hh"
 #include "core/cmdline.hh"
+#include "core/config.hh"
 #include "core/constexpr.hh"
 #include "core/crc64.hh"
 #include "core/epoch.hh"
 #include "core/logging.hh"
+
+#include "shared/content.hh"
+#include "shared/game.hh"
 
 #include "client/display.hh"
 #include "client/game.hh"
@@ -60,11 +64,28 @@ static void wrapped_main(int argc, char **argv)
 
     logging::init_from_cmdline();
 
+    content::init(argv[0]);
+
+    shared_game::init();
+
     display::init();
 
     render_api::init();
 
     client_game::init();
+
+    // This contains basic game information
+    // for the engine to set itself up correctly
+    config::load("qfengine.conf");
+
+    // This only works whenever the game directory
+    // is set; otherwise it just silently fails
+    PHYSFS_mkdir("config");
+
+    if(!cmdline::contains("autoconfig")) {
+        config::load("config/config.conf");
+        config::load("config/user.conf");
+    }
 
     globals::fixed_frametime = FLT_MAX;
     globals::fixed_frametime_avg = FLT_MAX;
@@ -112,6 +133,8 @@ static void wrapped_main(int argc, char **argv)
     client_game::deinit();
 
     render_api::deinit();
+
+    config::save("config/config.conf");
 }
 
 int main(int argc, char **argv)

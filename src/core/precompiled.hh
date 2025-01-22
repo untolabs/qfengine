@@ -8,14 +8,19 @@
 #include <cstddef>
 #include <cstdint>
 
+#include <algorithm>
 #include <chrono>
+#include <filesystem>
 #include <iostream>
 #include <limits>
 #include <mutex>
+#include <sstream>
 #include <thread>
 #include <type_traits>
 #include <unordered_map>
 #include <vector>
+
+#include <physfs.h>
 
 #include <stb_image.h>
 #include <stb_image_resize2.h>

@@ -5,6 +5,8 @@
 #include "core/cmdline.hh"
 #include "core/logging.hh"
 
+#include "shared/game.hh"
+
 #include "client/globals.hh"
 
 static SDL_GLContext gl_context;
@@ -14,14 +16,14 @@ static void GLAD_API_PTR on_opengl_message(GLenum source, GLenum type, GLuint id
     QF_inform("opengl: %s", message);
 }
 
-void opengl::video_init(const char *title)
+void opengl::video_init(void)
 {
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
     char fmt_buffer[256];
-    stbsp_snprintf(fmt_buffer, sizeof(fmt_buffer), "%s - OpenGL", title);
+    stbsp_snprintf(fmt_buffer, sizeof(fmt_buffer), "%s - OpenGL", shared_game::window_title);
     QF_verbose("opengl: window title: %s", fmt_buffer);
 
     globals::window = SDL_CreateWindow(fmt_buffer, 640, 480, SDL_WINDOW_OPENGL);

@@ -2,6 +2,7 @@
 !/.vscode/c_cpp_properties.json
 /src/core/feature.hh
 /src/core/version.hh
+/data/qfortress/config/
 /build32/
 /build64/
 /build/
