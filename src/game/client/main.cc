@@ -14,6 +14,7 @@
 #include "client/display.hh"
 #include "client/game.hh"
 #include "client/globals.hh"
+#include "client/input.hh"
 #include "client/render_api.hh"
 
 static bool poll_events(void)
@@ -73,6 +74,8 @@ static void wrapped_main(int argc, char **argv)
     render_api::init();
 
     client_game::init();
+
+    input::init();
 
     // This contains basic game information
     // for the engine to set itself up correctly

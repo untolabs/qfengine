@@ -6,6 +6,7 @@ add_library(qf_shared STATIC
     "${CMAKE_CURRENT_LIST_DIR}/game.hh"
     "${CMAKE_CURRENT_LIST_DIR}/globals.cc"
     "${CMAKE_CURRENT_LIST_DIR}/globals.hh"
+    "${CMAKE_CURRENT_LIST_DIR}/input.hh"
     "${CMAKE_CURRENT_LIST_DIR}/precompiled.hh")
 target_compile_features(qf_shared PUBLIC cxx_std_17)
 target_include_directories(qf_shared PUBLIC "${DEPS_INCLUDE_DIR}")

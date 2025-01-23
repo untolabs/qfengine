@@ -9,6 +9,8 @@ add_executable(qf_client
     "${CMAKE_CURRENT_LIST_DIR}/game.hh"
     "${CMAKE_CURRENT_LIST_DIR}/globals.cc"
     "${CMAKE_CURRENT_LIST_DIR}/globals.hh"
+    "${CMAKE_CURRENT_LIST_DIR}/input.cc"
+    "${CMAKE_CURRENT_LIST_DIR}/input.hh"
     "${CMAKE_CURRENT_LIST_DIR}/main.cc"
     "${CMAKE_CURRENT_LIST_DIR}/precompiled.hh"
     "${CMAKE_CURRENT_LIST_DIR}/render_api.cc"
