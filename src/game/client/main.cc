@@ -142,7 +142,9 @@ static void wrapped_main(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
+#ifdef NDEBUG
     try {
+#endif /* NDEBUG */
         QF_assert(SDL_InitSubSystem(SDL_INIT_AUDIO));
         QF_assert(SDL_InitSubSystem(SDL_INIT_VIDEO));
         QF_assert(SDL_InitSubSystem(SDL_INIT_EVENTS));
@@ -156,13 +158,13 @@ int main(int argc, char **argv)
         SDL_Quit();
 
         return EXIT_SUCCESS;
-    }
-    catch(const std::exception &exception) {
+#ifdef NDEBUG
+    } catch(const std::exception &exception) {
         QF_emerg("engine error: %s", exception.what());
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "QFengine Error", exception.what(), nullptr);
-        SDL_TriggerBreakpoint();
         std::terminate();
     }
+#endif /* NDEBUG */
 
     return EXIT_FAILURE;
 }
