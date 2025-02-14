@@ -38,6 +38,7 @@ endfunction()
 import_shared_library(SDL3)
 
 add_subdirectory(src/glad)
+add_subdirectory(src/imgui)
 add_subdirectory(src/physfs)
 add_subdirectory(src/stb)
 

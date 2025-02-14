@@ -24,6 +24,9 @@ PFN_render_level_init render_api::level_init = nullptr;
 PFN_render_level_deinit render_api::level_deinit = nullptr;
 PFN_render_level_render render_api::level_render = nullptr;
 
+PFN_render_imgui_begin_frame render_api::imgui_begin_frame = nullptr;
+PFN_render_imgui_end_frame render_api::imgui_end_frame = nullptr;
+
 void render_api::init(void)
 {
     opengl::init();
@@ -63,6 +66,9 @@ void render_api::deinit(void)
     render_api::level_init = nullptr;
     render_api::level_deinit = nullptr;
     render_api::level_render = nullptr;
+
+    render_api::imgui_begin_frame = nullptr;
+    render_api::imgui_end_frame = nullptr;
 }
 
 void render_api::reset(RenderAPI api)
@@ -109,6 +115,9 @@ void render_api::reset(RenderAPI api)
     render_api::level_deinit = nullptr;
     render_api::level_render = nullptr;
 
+    render_api::imgui_begin_frame = nullptr;
+    render_api::imgui_end_frame = nullptr;
+
     if(api == RenderAPI_OpenGL) {
         render_api::video_init = &opengl::video_init;
         render_api::video_deinit = &opengl::video_deinit;
@@ -118,6 +127,9 @@ void render_api::reset(RenderAPI api)
         render_api::level_init = &opengl::level_init;
         render_api::level_deinit = &opengl::level_deinit;
         render_api::level_render = &opengl::level_render;
+
+        render_api::imgui_begin_frame = &opengl::imgui_begin_frame;
+        render_api::imgui_end_frame = &opengl::imgui_end_frame;
     }
 
     QF_assert_msg(render_api::video_init, "Unknown or unsupported renderer");
@@ -129,6 +141,8 @@ void render_api::reset(RenderAPI api)
     render_api_complete = render_api_complete && render_api::level_init;
     render_api_complete = render_api_complete && render_api::level_deinit;
     render_api_complete = render_api_complete && render_api::level_render;
+    render_api_complete = render_api_complete && render_api::imgui_begin_frame;
+    render_api_complete = render_api_complete && render_api::imgui_end_frame;
 
     QF_assert_msg(render_api_complete, "Renderer implementation is incomplete");
 

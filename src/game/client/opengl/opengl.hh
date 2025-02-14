@@ -26,4 +26,10 @@ void level_deinit(void);
 void level_render(const DynamicLevelData &data);
 } // namespace opengl
 
+namespace opengl
+{
+void imgui_begin_frame(void);
+void imgui_end_frame(void);
+} // namespace opengl
+
 #endif /* CLIENT_OPENGL_OPENGL_HH */

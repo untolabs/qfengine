@@ -1,4 +1,5 @@
 add_executable(qf_client
+    "${CMAKE_CURRENT_LIST_DIR}/opengl/opengl_imgui.cc"
     "${CMAKE_CURRENT_LIST_DIR}/opengl/opengl_level.cc"
     "${CMAKE_CURRENT_LIST_DIR}/opengl/opengl_video.cc"
     "${CMAKE_CURRENT_LIST_DIR}/opengl/opengl.cc"
@@ -20,4 +21,4 @@ target_include_directories(qf_client PUBLIC "${DEPS_INCLUDE_DIR}")
 target_include_directories(qf_client PUBLIC "${PROJECT_SOURCE_DIR}/src")
 target_include_directories(qf_client PUBLIC "${PROJECT_SOURCE_DIR}/src/game")
 target_precompile_headers(qf_client PRIVATE "${CMAKE_CURRENT_LIST_DIR}/precompiled.hh")
-target_link_libraries(qf_client PUBLIC glad SDL3 qf_shared)
+target_link_libraries(qf_client PUBLIC glad imgui imgui_opengl3 imgui_SDL3 SDL3 qf_shared)

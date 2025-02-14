@@ -36,3 +36,7 @@ void client_game::window_update_late(void)
 
 }
 
+void client_game::layout_imgui(void)
+{
+    ImGui::ShowDemoWindow();
+}

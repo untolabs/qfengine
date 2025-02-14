@@ -17,4 +17,9 @@ void window_update(void);
 void window_update_late(void);
 } // namespace client_game
 
+namespace client_game
+{
+void layout_imgui(void);
+} // namespace client_game
+
 #endif /* CLIENT_GAME_HH */

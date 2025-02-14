@@ -62,10 +62,25 @@ void opengl::video_init(void)
 
     QF_inform("opengl: GL_VERSION: %s", glGetString(GL_VERSION));
     QF_inform("opengl: GL_RENDERER: %s", glGetString(GL_RENDERER));
+
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGui::StyleColorsDark();
+
+    auto &io = ImGui::GetIO();
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+
+    ImGui_ImplSDL3_InitForOpenGL(globals::window, gl_context);
+    ImGui_ImplOpenGL3_Init(nullptr);
 }
 
 void opengl::video_deinit(void)
 {
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplSDL3_Shutdown();
+    ImGui::DestroyContext();
+
     SDL_GL_DestroyContext(gl_context);
     SDL_DestroyWindow(globals::window);
 

@@ -22,6 +22,9 @@ static bool poll_events(void)
     SDL_Event event;
 
     while(SDL_PollEvent(&event)) {
+        // Pass events through to ImGui
+        ImGui_ImplSDL3_ProcessEvent(&event);
+
         if(event.type == SDL_EVENT_QUIT) {
             // The user requested the application
             // to terminate; returning false terminates
@@ -126,11 +129,17 @@ static void wrapped_main(int argc, char **argv)
 
         client_game::window_update();
 
+        render_api::imgui_begin_frame();
+
         render_api::video_prepare();
 
-        client_game::window_update_late();
+        client_game::layout_imgui();
+
+        render_api::imgui_end_frame();
 
         render_api::video_present();
+
+        client_game::window_update_late();
     }
 
     client_game::deinit();

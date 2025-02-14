@@ -20,6 +20,9 @@ using PFN_render_level_init = void(*)(const StaticLevelData &data);
 using PFN_render_level_deinit = void(*)(void);
 using PFN_render_level_render = void(*)(const DynamicLevelData &data);
 
+using PFN_render_imgui_begin_frame = void(*)(void);
+using PFN_render_imgui_end_frame = void(*)(void);
+
 namespace render_api
 {
 extern RenderAPI current_api;
@@ -38,6 +41,12 @@ namespace render_api
 extern PFN_render_level_init level_init;
 extern PFN_render_level_deinit level_deinit;
 extern PFN_render_level_render level_render;
+} // namespace render_api
+
+namespace render_api
+{
+extern PFN_render_imgui_begin_frame imgui_begin_frame;
+extern PFN_render_imgui_end_frame imgui_end_frame;
 } // namespace render_api
 
 namespace render_api
